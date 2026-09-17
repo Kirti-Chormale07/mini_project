@@ -1,62 +1,62 @@
-GitHub User Activity
-Use GitHub API to fetch user activity and display it in the terminal.
+# GitHub User Activity CLI
 
-Start building, submit solution and get feedback from the community.
+A dependency-free Python command-line tool that fetches a GitHub user's recent **public** activity and displays it in a readable form.
 
-Start Working
-2
-Submit Solution
-5 upvotes
-10 upvotes
-In this project, you will build a simple command line interface (CLI) to fetch the recent activity of a GitHub user and display it in the terminal. This project will help you practice your programming skills, including working with APIs, handling JSON data, and building a simple CLI application.
+## Project structure
 
-Requirements
-The application should run from the command line, accept the GitHub username as an argument, fetch the user's recent activity using the GitHub API, and display it in the terminal. The user should be able to:
+```text
+github-user-activity-use-github-api/
+├── github_activity.py  # CLI application
+└── README.md           # Setup and usage guide
+```
 
-Provide the GitHub username as an argument when running the CLI.
+## Requirements
 
-bash
+- Python 3.9 or newer
+- An internet connection
 
-github-activity <username>
-Fetch the recent activity of the specified GitHub user using the GitHub API. You can use the following endpoint to fetch the user's activity:
+No packages need to be installed. The program only uses Python's standard library.
 
-javascript
+## Run it
 
-# https://api.github.com/users/<username>/events
-# Example: https://api.github.com/users/kamranahmedse/events
-Display the fetched activity in the terminal.
+1. Open a terminal in the project folder.
+2. Run the command below, replacing `octocat` with the GitHub username you want to inspect:
 
-javascript
+   ```powershell
+   python github_activity.py octocat
+   ```
 
-Output:
-- Pushed 3 commits to kamranahmedse/developer-roadmap
-- Opened a new issue in kamranahmedse/developer-roadmap
-- Starred kamranahmedse/developer-roadmap
-- ...
-You can learn more about the GitHub API here.
+   On systems where Python is invoked as `python3`, use:
 
-Handle errors gracefully, such as invalid usernames or API failures.
+   ```bash
+   python3 github_activity.py octocat
+   ```
 
-Use a programming language of your choice to build this project.
+3. Example output:
 
-Do not use any external libraries or frameworks to fetch the GitHub activity.
+   ```text
+   Recent activity for octocat:
+   - Starred owner/example-repository
+   - Pushed 2 commits to owner/example-repository
+   - Opened an issue in owner/example-repository
+   ```
 
-If you are looking to build a more advanced version of this project, you can consider adding features like filtering the activity by event type, displaying the activity in a more structured format, or caching the fetched data to improve performance. You can also explore other endpoints of the GitHub API to fetch additional information about the user or their repositories.
+## Help
 
-Join the Community
+```powershell
+python github_activity.py --help
+```
 
-roadmap.sh is the 6th most starred project on GitHub and is visited by hundreds of thousands of developers every month.
+## Error handling
 
-Rank 7th
- out of 28M!
+The CLI reports useful messages for missing arguments, nonexistent users, network failures, GitHub API errors, and API rate limits.
 
-367K
+## How it works
 
-GitHub Stars
+The application makes a GET request to:
 
-Star us on GitHub
-Help us reach #1
-+90k
-every month
+```text
+https://api.github.com/users/<username>/events
+```
 
-+3."# mini_project" 
+It reads the JSON response and turns common event types (pushes, stars, issues, pull requests, forks, and more) into terminal-friendly messages.
